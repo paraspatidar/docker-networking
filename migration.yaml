@@ -1,0 +1,13 @@
+version: '3.3'
+services:
+  db_migrate:
+    image: ef-migration-app-data:777.44.1
+    tty: true
+    entrypoint: 'make update -C myapp.Data && exit'
+    environment:
+      ConnectionStrings__DatabaseConnection: "Host=db;Database=customerlocaldb;Username=postgres;Password=postgres"
+    networks:
+      - docker-networking_my_network
+networks:
+  docker-networking_my_network:
+    external: true
